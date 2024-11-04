@@ -4,6 +4,7 @@ SECRET_FILE="$GITHUB_WORKSPACE/.mysecrets"
 
 echo "$1" > "$SECRET_FILE"
 
+cat << 'EOF' > "$GITHUB_WORKSPACE/.secret_funcs.sh"
 secret() {
   key="$1"
   value=""
@@ -21,5 +22,6 @@ secret() {
 
   echo "$value"
 }
+EOF
 
-echo "source $GITHUB_WORKSPACE/.secret_funcs.sh" >> "$GITHUB_ENV"
+echo "source $GITHUB_WORKSPACE/.secret_funcs.sh" >> ~/.bashrc
