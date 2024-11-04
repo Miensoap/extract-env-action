@@ -22,4 +22,4 @@ secret() {
   echo "$value"
 }
 
-echo "$(declare -f secret)" >> "$GITHUB_ENV"
+echo "source $GITHUB_WORKSPACE/.secret_funcs.sh" >> "$GITHUB_ENV"
