@@ -1,18 +1,21 @@
 name: "Export env from single secret"
 description: "Parse environment variables from a secret file content and set them in the environment"
 author: "miensoap"
+branding:
+  color: "blue"
+  icon: "globe"
 
 inputs:
-  env_file_content:
-    description: "The content of the .env file as a single secret"
+  secret_text:
+    description: "Multi-line secret text"
+    required: true
+  command:
+    description: "The command to run using secrets"
     required: true
 
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.env_file_content }}
-
-branding:
-  color: "blue"
-  icon: "globe"
+    - "${{ inputs.secret_text }}"
+    - "${{ inputs.command }}"

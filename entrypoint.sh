@@ -1,11 +1,21 @@
-#!/bin/sh -l
+#!/bin/bash
 
-echo "$1" | while read -r line; do
-  if [[ ! -z "$line" && "$line" != \#* ]]; then  
-    key=$(echo $line | cut -d '=' -f 1)
-    value=$(echo $line | cut -d '=' -f 2-)
+SECRET_FILE=".mysecrets"
 
-    echo "$key=$value" >> $GITHUB_ENV
-    echo "Setting environment variable: $key"
+echo "$1" > "$SECRET_FILE"
+
+secret() {
+  local key="$1"
+  local value=$(awk "/^$key<<EOF/{flag=1;next}/EOF/{flag=0}flag" "$SECRET_FILE")
+
+  if [ -z "$value" ]; then
+    echo "Key not found: $key" >&2
+    return 1
   fi
-done
+
+  echo "$value"
+}
+
+alias secret=secret
+
+eval "$2"
