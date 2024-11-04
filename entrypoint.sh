@@ -17,5 +17,4 @@ secret() {
 }
 
 alias secret=secret
-
-eval "$2"
+echo "alias secret=secret" >> "$GITHUB_ENV"
