@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Set environment variables from secret
-        uses: Miensoap/extract-env-action@v0.0.3
+        uses: Miensoap/extract-env-action@v0.0.n
         with:
           env_file_content: ${{ secrets.ENV_FILE_CONTENT }}
 
@@ -32,5 +32,7 @@ jobs:
 
 ### 테스트 결과
 
-![image](https://github.com/user-attachments/assets/6b1a1419-83ee-483f-a745-f48d35d8dd8d)
+로그에 마스킹되어 표시되는 것 확인
+![image](https://github.com/user-attachments/assets/a48c790d-255f-4afe-94cb-858b21b2e2e8)
+
 
