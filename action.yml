@@ -14,5 +14,5 @@ runs:
     - ${{ inputs.env_file_content }}
 
 branding:
-  color: "blue"
-  icon: "globe"
+  color: "purple"
+  icon: "lock"
